@@ -30,7 +30,7 @@ Public Class state_forwardvector(Of T)
         
     End Sub
 
-    Shadows Sub Clear(n As Integer)
+    Overloads Sub Clear(n As Integer)
         RemoveAt(n)
     End Sub
 

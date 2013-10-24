@@ -3,13 +3,22 @@ Imports Netdx.Iterators
 Module Module1
 
     Sub Main()
-        TestidxGet()
-        TestStorage()
-        TestIdxspec()
-        TestidxSelect()
-        TestebLoop()
-        Testaloop
+        'TestidxGet()
+        'TestStorage()
+        'TestIdxspec()
+        'TestidxSelect()
+        'TestebLoop()
+        'Testaloop
+        TestRandom
         Console.Read
+    End Sub
+    Sub TestRandom()
+        Dim r As New RandomGen.MersenneTwister
+        For x = 0 To 99
+            'Print(r.Next(0.1, 0.9))
+            Print(r.NextDoublePositive)
+            'Print(0.1 <= r.Next(0.1, 0.9) <= 0.9)
+        Next
     End Sub
 
     Sub Testaloop()

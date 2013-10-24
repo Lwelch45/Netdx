@@ -64,6 +64,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Core\idxops.vb" />
     <Compile Include="Classes\Misc\DxError.vb" />
     <Compile Include="Classes\Core\idx.vb" />
     <Compile Include="Classes\Misc\idxd.vb" />
@@ -72,6 +73,7 @@
     <Compile Include="Classes\Iterators\idxlooper.vb" />
     <Compile Include="Classes\Iterators\Iterators.vb" />
     <Compile Include="Classes\Core\srg.vb" />
+    <Compile Include="Classes\Misc\Random.vb" />
     <Compile Include="Classes\Misc\svector.vb" />
     <Compile Include="Interfaces\Iidx.vb" />
     <Compile Include="Interfaces\IExtractor.vb" />
@@ -111,6 +113,12 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RandomGen\RandomGen.csproj">
+      <Project>{102CF6A8-53FE-4758-9CF4-84B8D3534C6B}</Project>
+      <Name>RandomGen</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

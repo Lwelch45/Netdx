@@ -41,7 +41,7 @@
     End Property
 
     Public Function Remove(item As T) As Boolean Implements System.Collections.Generic.ICollection(Of T).Remove
-        L.Remove(item)
+        Return L.Remove(item)
     End Function
 
     Public Function GetEnumerator() As System.Collections.Generic.IEnumerator(Of T) Implements System.Collections.Generic.IEnumerable(Of T).GetEnumerator

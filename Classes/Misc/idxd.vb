@@ -50,7 +50,8 @@
         Offsets = Nothing
         SetDims(i)
     End Sub
-    Sub New(s0 As Integer, s1 As Integer, s2 As Integer, s3 As Integer, s4 As Integer, s5 As Integer, s6 As Integer, s7 As Integer)
+    Sub New(s0 As Integer, Optional s1 As Integer = -1, Optional s2 As Integer = -1, Optional s3 As Integer = -1,
+            Optional s4 As Integer = -1, Optional s5 As Integer = -1, Optional s6 As Integer = -1, Optional s7 As Integer = -1)
         dims(0) = s0
         dims(1) = s1
         dims(2) = s2
