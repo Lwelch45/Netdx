@@ -64,14 +64,15 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\DxError.vb" />
-    <Compile Include="Classes\idx.vb" />
-    <Compile Include="Classes\idxd.vb" />
-    <Compile Include="Classes\idxspec.vb" />
+    <Compile Include="Classes\Misc\DxError.vb" />
+    <Compile Include="Classes\Core\idx.vb" />
+    <Compile Include="Classes\Misc\idxd.vb" />
+    <Compile Include="Classes\Core\idxspec.vb" />
     <Compile Include="Classes\Iterators\idxiter.vb" />
     <Compile Include="Classes\Iterators\idxlooper.vb" />
     <Compile Include="Classes\Iterators\Iterators.vb" />
-    <Compile Include="Classes\srg.vb" />
+    <Compile Include="Classes\Core\srg.vb" />
+    <Compile Include="Classes\Misc\svector.vb" />
     <Compile Include="Interfaces\Iidx.vb" />
     <Compile Include="Interfaces\IExtractor.vb" />
     <Compile Include="Interfaces\IDescription.vb" />
