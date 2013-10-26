@@ -3,6 +3,8 @@ Public Class idxspec
     Implements IDescription
 
     Private _offset As Integer
+ 
+
     Public Property Offset As Integer Implements IDescription.Offset
         Get
             Return _offset
@@ -62,6 +64,10 @@ Public Class idxspec
         Offset = o
         [dim] = Nothing
         [mod] = Nothing
+    End Sub
+    Sub New(o As Integer, d As idxd(Of Integer))
+        init_spec(o, d.dims(0), d.dims(1), d.dims(2), d.dims(3), d.dims(4), _
+         d.dims(5), d.dims(6), d.dims(7), d.order())
     End Sub
 
     Sub New(ByVal o As Integer, ByVal s0 As Integer)

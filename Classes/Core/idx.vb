@@ -77,11 +77,11 @@
         Storage = New Srg(Of T)
         GrowStorage()
     End Sub
-    'Sub New(d As idxd(Of Integer))
-    '    Spec = New idxspec(0, d)
-    '    Storage = New Srg(Of T)
-    '    GrowStorage()
-    'End Sub
+    Sub New(d As idxd(Of Integer))
+        Spec = New idxspec(0, d)
+        Storage = New Srg(Of T)
+        GrowStorage()
+    End Sub
     Sub New(ByRef sg As Srg(Of T), s As idxspec)
         Spec = s
         If Not sg Is Nothing Then

@@ -132,6 +132,19 @@
 #End Region
 
 #Region "Misc"
+    Public Shared Operator =(ByVal other As idxd(Of T), ByVal i As idxd(Of T)) As Boolean
+        If other.ndim <> i.ndim Then Return False
+        For ind = 0 To i.ndim - 1
+            If Not DirectCast(other.Dim(ind), Object) = DirectCast(i.Dim(ind), Object) Then
+                Return False
+            End If
+        Next
+        Return True
+    End Operator
+    Public Shared Operator <>(ByVal other As idxd(Of T), ByVal i As idxd(Of T)) As Boolean
+        If Not other = i Then Return True
+        Return False
+    End Operator
     Public Function Empty() As Boolean Implements IExtractor(Of T).Empty
 
     End Function

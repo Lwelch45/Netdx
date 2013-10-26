@@ -67,12 +67,14 @@
     <Compile Include="Classes\Core\idxops.vb" />
     <Compile Include="Classes\Misc\DxError.vb" />
     <Compile Include="Classes\Core\idx.vb" />
-    <Compile Include="Classes\Misc\idxd.vb" />
+    <Compile Include="Classes\Misc\File.vb" />
+    <Compile Include="Classes\Core\idxd.vb" />
     <Compile Include="Classes\Core\idxspec.vb" />
     <Compile Include="Classes\Iterators\idxiter.vb" />
     <Compile Include="Classes\Iterators\idxlooper.vb" />
     <Compile Include="Classes\Iterators\Iterators.vb" />
     <Compile Include="Classes\Core\srg.vb" />
+    <Compile Include="Classes\Misc\idxIO.vb" />
     <Compile Include="Classes\Misc\Random.vb" />
     <Compile Include="Classes\Misc\svector.vb" />
     <Compile Include="Interfaces\Iidx.vb" />

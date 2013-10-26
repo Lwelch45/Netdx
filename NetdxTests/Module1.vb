@@ -9,7 +9,10 @@ Module Module1
         'TestidxSelect()
         'TestebLoop()
         'Testaloop
-        TestRandom
+        'TestRandom
+        Dim Value As Integer = Val("&H" & "7fffffff")
+        Print(Value)
+        Print(idxIO.MAGIC_FLOAT_MATRIX)
         Console.Read
     End Sub
     Sub TestRandom()
