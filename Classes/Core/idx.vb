@@ -91,6 +91,15 @@
         End If
         GrowStorage()
     End Sub
+    Sub New(ByRef sg As Srg(Of T), o As Integer, d As idxd(Of Integer))
+        Spec = New idxspec(IIf(Not sg Is Nothing, o, 0), d)
+        If Not sg Is Nothing Then
+            Storage = sg
+        Else
+            Storage = New Srg(Of T)
+        End If
+        GrowStorage()
+    End Sub
     Sub New(ByRef sg As Srg(Of T), o As Integer, n As Integer, dims As Integer(), mods As Integer())
         Spec = New idxspec(IIf(Not sg Is Nothing, o, 0), n, dims, mods)
         If Not sg Is Nothing Then
@@ -333,7 +342,7 @@
 #End Region
 
 #Region "Resize"
-    Sub resize(s0 As Integer, s1 As Integer, s2 As Integer, s3 As Integer, s4 As Integer, s5 As Integer, s6 As Integer, s7 As Integer)
+    Sub resize(s0 As Integer, Optional s1 As Integer = -1, Optional s2 As Integer = -1, Optional s3 As Integer = -1, Optional s4 As Integer = -1, Optional s5 As Integer = -1, Optional s6 As Integer = -1, Optional s7 As Integer = -1)
         Spec.Resize(s0, s1, s2, s3, s4, s5, s6, s7)
         GrowStorage()
     End Sub

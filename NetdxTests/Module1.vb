@@ -1,5 +1,6 @@
 ﻿Imports Netdx
 Imports Netdx.Iterators
+Imports Netdx.idxops
 Module Module1
 
     Sub Main()
@@ -8,19 +9,50 @@ Module Module1
         'TestIdxspec()
         'TestidxSelect()
         'TestebLoop()
-        'Testaloop
+        'Testaloop()
         'TestRandom
-        Dim Value As Integer = Val("&H" & "7fffffff")
-        Print(Value)
-        Print(idxIO.MAGIC_FLOAT_MATRIX)
+        ' Test_idx_m2dotm1()
+        'Test_concat()
+        Test_lin_comb()
         Console.Read
     End Sub
+
+    Sub Test_lin_comb()
+        Dim d1 As New idx(Of Double)(5)
+        Dim d2 As New idx(Of Double)(5)
+        Dim d3 As New idx(Of Double)(5)
+        idx_fill(d1, 1.0)
+        idx_fill(d2, 2.0)
+
+        lin_comb(d1, 1, d2, 1, d3)
+        idx_aloop1(d3, Sub(itr0, src) Print(src.Ptr(itr0.DataO)))
+    End Sub
+    Sub Test_concat()
+        Dim d1 As New idx(Of Double)(5)
+        Dim d2 As New idx(Of Double)(5)
+
+        idx_fill(d1, 1.0)
+        idx_fill(d2, 2.0)
+        Dim d3 As idx(Of Double) = Concat(d1, d2, 1)
+        idx_aloop1(d3, Sub(itr0, src) Print(src.Ptr(itr0.DataO)))
+    End Sub
+    Sub Test_idx_m2dotm1()
+        Dim d1 As New idx(Of Double)(5)
+        Dim d2 As New idx(Of Double)(2, 5)
+        Dim out As New idx(Of Double)(2)
+
+        idx_fill(d1, 1.0)
+        idx_fill(d2, 2.0)
+        idx_m2dotm1(d2, d1, out)
+        idx_aloop1(out, Sub(itr0, src) Print(src.Ptr(itr0.DataO)))
+    End Sub
+
     Sub TestRandom()
         Dim r As New RandomGen.MersenneTwister
         For x = 0 To 99
             'Print(r.Next(0.1, 0.9))
-            Print(r.NextDoublePositive)
-            'Print(0.1 <= r.Next(0.1, 0.9) <= 0.9)
+            'Print(r.NextDoublePositive)
+            Print(0.1 <= r.Next(0.1, 0.9) <= 0.9)
         Next
     End Sub
 

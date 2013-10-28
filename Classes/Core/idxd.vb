@@ -34,9 +34,13 @@
         dims = New Integer(8) {}
     End Sub
 
-    Sub New(i As idx(Of Type))
+    Sub New(i As idx(Of Object))
         Offsets = Nothing
         SetDims(i.Spec)
+    End Sub
+    Sub New(o As Object)
+        Offsets = Nothing
+        SetDims(o.Spec)
     End Sub
     Sub New(i As idxd(Of Object))
         Offsets = Nothing

@@ -160,6 +160,10 @@ Public Class idxIO
 #End Region
 
 #Region "loading"
+    Public Shared Function load_matrix(Of T)(filename As String) As idx(Of T)
+        Dim File = New File(filename, True)
+        Return load_matrix(Of T)(File)
+    End Function
 
     Public Shared Sub read_matrix_body_integer(ByRef fp As File, ByRef m As idx(Of Integer))
         Dim fpp = fp

@@ -79,6 +79,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Param\ddparameter.vb" />
+    <Compile Include="Param\dparameter.vb" />
     <Compile Include="Param\forget_param_linear.vb" />
     <Compile Include="Param\gd_param.vb" />
     <Compile Include="Param\parameter.vb" />

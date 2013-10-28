@@ -4,7 +4,7 @@ Imports Netdx.DxError
 Public Class idxiter
     Public DataO As Integer 'Offset to Data for use with idx.ptr
     Protected i As Integer
-    Protected n As Integer
+    Friend n As Integer
     Protected j As Integer
     Protected d As Integer() = New Integer(8) {}
     Sub New()
@@ -27,7 +27,7 @@ Public Class idxiter
     End Function
 
     Public Function [next](Of T)(ByRef m As idx(Of T)) As Integer
-        i += 1
+
         If (d(0) < 0) Then
             'Contiguous idx
             DataO += 1
@@ -45,6 +45,7 @@ Public Class idxiter
                 End If
             Loop
         End If
+        i += 1
         Return DataO
     End Function
 

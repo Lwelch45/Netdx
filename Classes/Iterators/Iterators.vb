@@ -83,11 +83,11 @@ Public Class Iterators
 
 #Region "aloop_on"
     Public Shared Sub idx_aloop1_on(Of T)(ByRef itr0 As idxiter, ByRef Src0 As idx(Of T), Act As Action(Of idxiter, idx(Of T)))
-        itr0.init(Src0)
-        While itr0.notdone
+        itr0.init(Src0) ' : If itr0.notdone Then Act(itr0, Src0)
+        Do While itr0.notdone
             itr0.next(Src0)
             Act(itr0, Src0)
-        End While
+        Loop
     End Sub
 #End Region
 
@@ -99,6 +99,7 @@ Public Class Iterators
         Dim itr0 = New idxiter
         Dim itr1 = New idxiter
         itr0.init(Src0) : itr1.init(Src1)
+        '   If itr0.notdone Then Act(itr0, Src0, itr1, Src1)
         While itr0.notdone
             itr0.next(Src0) : itr1.next(Src1)
             Act(itr0, Src0, itr1, Src1)
@@ -109,7 +110,8 @@ Public Class Iterators
         Dim itr0 = New idxiter
         Dim itr1 = New idxiter
         Dim itr2 = New idxiter
-        itr0.init(Src0) : itr1.init(Src1) : itr1.init(Src2)
+        itr0.init(Src0) : itr1.init(Src1) : itr2.init(Src2)
+        'If itr0.notdone Then Act(itr0, Src0, itr1, Src1, itr2, Src2)
         While itr0.notdone
             itr0.next(Src0) : itr1.next(Src1) : itr2.next(Src2)
             Act(itr0, Src0, itr1, Src1, itr2, Src2)

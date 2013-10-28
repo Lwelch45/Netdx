@@ -10,25 +10,25 @@ Public Class gd_param
     Inherits infer_param
 
     '! global step size
-    Dim eta As Double
+    Public eta As Double
     '! stopping criterion threshold
-    Dim n As Double
+    Public n As Double
     '! L1 regularizer coefficient
-    Dim decay_l1 As Double
+    Public decay_l1 As Double
     '! L2 regularizer coefficient
-    Dim decay_l2 As Double
+    Public decay_l2 As Double
     '! Time (in number of training samples) after which to decay values
-    Dim decay_time As Integer
+    Public decay_time As Integer
     '! momentum term
-    Dim inertia As Double
+    Public inertia As Double
     '! annealing coefficient for the learning rate
-    Dim anneal_value As Double
+    Public anneal_value As Double
     '! Number of training samples beetween two annealings.
-    Dim anneal_period As Integer
+    Public anneal_period As Integer
     '! threshold on square norm of gradient for stopping
-    Dim gradient_threshold As Double
+    Public gradient_threshold As Double
     '! for debugging purpose
-    Dim niter_done As Integer
+    Public niter_done As Integer
 
     Sub New()
         eta = 0.0
