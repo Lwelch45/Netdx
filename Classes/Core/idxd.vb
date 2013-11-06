@@ -1,29 +1,32 @@
 ﻿Public Class idxd(Of T)
     Implements IExtractor(Of T)
-
+    Private _ndim As Integer = 0
     Public Property ndim As Integer Implements IExtractor(Of T).ndim
         Get
-
+            Return _ndim
         End Get
         Set(value As Integer)
-
+            _ndim = value
         End Set
     End Property
 
+    Private _dims As Integer() = New Integer() {-1, -1, -1, -1, -1, -1, -1, -1}
     Public Property dims As Integer() Implements IExtractor(Of T).dims
         Get
-
+            Return _dims
         End Get
         Set(value As Integer())
-
+            _dims = value
         End Set
     End Property
+
+    Private _offsets as T()
     Public Property Offsets As T() Implements IExtractor(Of T).Offsets
         Get
-
+            Return _offsets
         End Get
         Set(value As T())
-
+            _offsets = value
         End Set
     End Property
 
@@ -31,9 +34,8 @@
     Sub New()
         Offsets = Nothing
         ndim = -1
-        dims = New Integer(8) {}
+        dims = New Integer() {-1, -1, -1, -1, -1, -1, -1, -1}
     End Sub
-
     Sub New(i As idx(Of Object))
         Offsets = Nothing
         SetDims(i.Spec)
@@ -73,7 +75,7 @@
 
 #Region "Dims"
     Public Function [Dim](d As Integer) As T Implements IExtractor(Of T).Dim
-
+        Return DirectCast(dims(d), Object)
     End Function
 
     Public Sub SetDim(dimn As Integer, size As T) Implements IExtractor(Of T).SetDim
@@ -81,15 +83,20 @@
     End Sub
 
     Public Sub SetDims(index As IDescription) Implements IExtractor(Of T).SetDims
-
+        ndim = index.ndim
+        dims = index.dim
     End Sub
 
     Public Sub SetDims(s As IExtractor(Of T)) Implements IExtractor(Of T).SetDims
-
+        ndim = s.Order
+        dims = s.dims
+        Offsets = s.Offsets
     End Sub
 
     Public Sub SetDims(s As IExtractor(Of Object)) Implements IExtractor(Of T).SetDims
-
+        ndim = s.Order
+        dims = s.dims
+        Offsets = s.Offsets
     End Sub
 
     Public Sub SetDims(index As Iidx(Of T)) Implements IExtractor(Of T).SetDims
@@ -97,6 +104,9 @@
     End Sub
 
     Public Sub SetDims(n As T) Implements IExtractor(Of T).SetDims
+        For i = 0 To ndim - 1
+            dims(i) = DirectCast(n, Object)
+        Next
 
     End Sub
 
@@ -105,15 +115,33 @@
     End Sub
 
     Public Function MaxDim() As T Implements IExtractor(Of T).MaxDim
-
+        Dim m As Integer = 0
+        For i = 0 To ndim - 1
+            If m < dims(i) Then m = dims(i)
+        Next
+        Return DirectCast(m, Object)
     End Function
 
     Public Function RemoveDim(pos As Integer) As T Implements IExtractor(Of T).RemoveDim
-
+        Dim rdim = [Dim](pos)
+        For i = pos To ndim - 2
+            dims(i) = dims(i + 1)
+        Next
+        dims(ndim - 1) = -1
+        If Not Offsets Is Nothing Then
+            For i = pos To ndim - 2
+                Offsets(i) = Offsets(i + 1)
+            Next
+            Offsets(ndim - 1) = DirectCast(-1, Object)
+        End If
+        ndim -= 1
+        Return rdim
     End Function
 
     Public Sub RemoveTrailingDims() Implements IExtractor(Of T).RemoveTrailingDims
-
+        For i = ndim - 1 To 0 Step -1
+            If [Dim](i) = DirectCast(1, Object) Then RemoveDim(i) Else Exit For
+        Next
     End Sub
 
     Public Sub ShiftDim(d As Integer, pos As Integer) Implements IExtractor(Of T).ShiftDim
@@ -123,15 +151,22 @@
 
 #Region "Offset"
     Public Sub SetOffset(dimn As Integer, offset As T) Implements IExtractor(Of T).SetOffset
-
+        If Offsets Is Nothing Then
+            Offsets = New T() {DirectCast(0, Object), DirectCast(0, Object), DirectCast(0, Object), DirectCast(0, Object), DirectCast(0, Object), DirectCast(0, Object), DirectCast(0, Object), DirectCast(0, Object)}
+        End If
+        Offsets(dimn) = offset
     End Sub
 
     Public Function Offset(d As Integer) As T Implements IExtractor(Of T).Offset
-
+        If Offsets Is Nothing Then
+            Return DirectCast(0, Object)
+        Else
+            Return Offsets(d)
+        End If
     End Function
 
     Public Function HasOffsets() As Boolean Implements IExtractor(Of T).HasOffsets
-
+        Return Not Offsets Is Nothing
     End Function
 #End Region
 
@@ -150,16 +185,22 @@
         Return False
     End Operator
     Public Function Empty() As Boolean Implements IExtractor(Of T).Empty
-
+        Return ndim = -1
     End Function
     Public Function Nelements() As Integer Implements IExtractor(Of T).Nelements
-
+        Dim total = 1
+        For i = 0 To ndim - 1
+            total *= DirectCast([Dim](i), Object)
+        Next
+        Return total
     End Function
     Public Function Order() As Integer Implements IExtractor(Of T).Order
-
+        Return ndim
     End Function
     Public Sub SetMax(other As IExtractor(Of T)) Implements IExtractor(Of T).SetMax
-
+        For i = 0 To ndim - 1
+            dims(i) = IIf(dims(i) > other.dims(i), dims(i), other.Dim(i))
+        Next
     End Sub
 #End Region
 

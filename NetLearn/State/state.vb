@@ -96,8 +96,6 @@ Public Class state(Of T)
     End Sub
 #End Region
 
-
-
     Sub allocate(D As idxd(Of Integer), ByRef P As parameter(Of T))
         If Not P Is Nothing Then
             Me.Storage = P.GetStorage
@@ -117,13 +115,11 @@ Public Class state(Of T)
         End If
 
     End Sub
-
     Sub init()
         forward_only = False
         x.parent = Me
         x.Add(Me)
     End Sub
-
     Sub set_forward_only()
         forward_only = True
     End Sub
@@ -181,6 +177,40 @@ Public Class state(Of T)
     End Sub
     Sub link_main_to_f0()
         x.Item(0) = Me 'f0is a reference to the main tensor
+    End Sub
+
+    Sub resize(s0 As Integer, Optional s1 As Integer = -1, Optional s2 As Integer = -1, Optional s3 As Integer = -1, Optional s4 As Integer = -1, Optional s5 As Integer = -1, Optional s6 As Integer = -1, Optional s7 As Integer = -1)
+        If Not same_dim(s0, s1, s2, s3, s4, s5, s6, s7) Then
+            MyBase.resize(s0, s1, s2, s3, s4, s5, s6, s7)
+            If Not dx.Count = 0 Then dx(0).resize(s0, s1, s2, s3, s4, s5, s6, s7)
+            If Not ddx.Count = 0 Then ddx(0).resize(s0, s1, s2, s3, s4, s5, s6, s7)
+        End If
+    End Sub
+    Sub resize(D As idxd(Of Integer), Optional n As Integer = -1)
+        For i = 0 To IIf(n > 1, n, 1)
+            If i > x.Count Then
+                x.Add(New idx(Of T)(D))
+                If Not dx.Count = 0 Then dx.Add(New idx(Of T)(D))
+                If Not ddx.Count = 0 Then ddx.Add(New idx(Of T)(D))
+            ElseIf Not x(i).same_dim(D) Then
+                x(i).resize(D)
+                If i < dx.Count Then dx(i).resize(D)
+                If i < ddx.Count Then ddx(i).resize(D)
+            End If
+        Next
+    End Sub
+    Sub resize1(dimn As Integer, size As Integer)
+        If Not [dim](dimn) = size Then
+            MyBase.resize1(dimn, size)
+            If Not dx.Count = 0 Then dx(0).resize(dimn, size)
+            If Not ddx.Count = 0 Then ddx(0).resize(dimn, size)
+        End If
+    End Sub
+    Sub resize_as(other As state(Of T))
+        resize_vidx_as(other.x, x)
+        link_f0()
+        resize_vidx_as(other.dx, dx)
+        resize_vidx_as(other.ddx, ddx)
     End Sub
 
     Sub resize_dx()

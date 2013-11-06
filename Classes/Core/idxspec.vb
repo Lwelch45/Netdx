@@ -1,9 +1,10 @@
 ﻿Imports Netdx.DxError
+
 Public Class idxspec
     Implements IDescription
 
     Private _offset As Integer
- 
+
 
     Public Property Offset As Integer Implements IDescription.Offset
         Get
@@ -48,6 +49,7 @@ Public Class idxspec
     Sub New()
         [dim] = Nothing
         ndim = -1
+
         [mod] = Nothing
         Offset = 0
     End Sub
@@ -67,7 +69,7 @@ Public Class idxspec
     End Sub
     Sub New(o As Integer, d As idxd(Of Integer))
         init_spec(o, d.dims(0), d.dims(1), d.dims(2), d.dims(3), d.dims(4), _
-         d.dims(5), d.dims(6), d.dims(7), d.order())
+         d.dims(5), d.dims(6), d.dims(7), d.Order())
     End Sub
 
     Sub New(ByVal o As Integer, ByVal s0 As Integer)

@@ -64,6 +64,9 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.vb" />
+    <Compile Include="Module\Base\module.vb" />
+    <Compile Include="Module\Base\module_1_1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

@@ -1,7 +1,7 @@
 ﻿Imports Netdx
 Public Class state_forwardvector(Of T)
     Inherits svector(Of T)
-    Dim parent As T
+    Friend parent As T
 
     Sub New()
         MyBase.new()

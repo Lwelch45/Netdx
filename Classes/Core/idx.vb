@@ -277,7 +277,57 @@
 #End Region
 
 #Region "Misc"
-
+    Function same_dim(s0 As Integer, Optional s1 As Integer = -1, Optional s2 As Integer = -1, Optional s3 As Integer = -1, Optional s4 As Integer = -1, Optional s5 As Integer = -1, Optional s6 As Integer = -1, Optional s7 As Integer = -1) As Boolean
+        If (s7 >= 0) AndAlso (Spec.ndim < 8) Then
+            Return False
+        End If
+        If (Spec.ndim = 8) AndAlso (s7 <> Spec.[dim](7)) Then
+            Return False
+        End If
+        If (s6 >= 0) AndAlso (Spec.ndim < 7) Then
+            Return False
+        End If
+        If (Spec.ndim >= 7) AndAlso (s6 <> Spec.[dim](6)) Then
+            Return False
+        End If
+        If (s5 >= 0) AndAlso (Spec.ndim < 6) Then
+            Return False
+        End If
+        If (Spec.ndim >= 6) AndAlso (s5 <> Spec.[dim](5)) Then
+            Return False
+        End If
+        If (s4 >= 0) AndAlso (Spec.ndim < 5) Then
+            Return False
+        End If
+        If (Spec.ndim >= 5) AndAlso (s4 <> Spec.[dim](4)) Then
+            Return False
+        End If
+        If (s3 >= 0) AndAlso (Spec.ndim < 4) Then
+            Return False
+        End If
+        If (Spec.ndim >= 4) AndAlso (s3 <> Spec.[dim](3)) Then
+            Return False
+        End If
+        If (s2 >= 0) AndAlso (Spec.ndim < 3) Then
+            Return False
+        End If
+        If (Spec.ndim >= 3) AndAlso (s2 <> Spec.[dim](2)) Then
+            Return False
+        End If
+        If (s1 >= 0) AndAlso (Spec.ndim < 2) Then
+            Return False
+        End If
+        If (Spec.ndim >= 2) AndAlso (s1 <> Spec.[dim](1)) Then
+            Return False
+        End If
+        If (s0 >= 0) AndAlso (Spec.ndim < 1) Then
+            Return False
+        End If
+        If (Spec.ndim >= 1) AndAlso (s0 <> Spec.[dim](0)) Then
+            Return False
+        End If
+        Return True
+    End Function
     Public Function [dim](d As Integer) As Integer
         Return Spec.dim(d)
     End Function
